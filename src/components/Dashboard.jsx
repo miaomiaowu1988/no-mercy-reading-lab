@@ -1,4 +1,5 @@
 import ModuleCard from './ModuleCard.jsx';
+import PenaltyReview from './PenaltyReview.jsx';
 import ProgressPanel from './ProgressPanel.jsx';
 import WeakSignsPanel from './WeakSignsPanel.jsx';
 
@@ -20,7 +21,7 @@ const modules = [
   }
 ];
 
-export default function Dashboard({ stats, weakSigns, bossUnlocked, onSelectModule }) {
+export default function Dashboard({ stats, weakSigns, dueReviewItems, casesById, bossUnlocked, onSelectModule }) {
   return (
     <div className="dashboard">
       <section className="hero-panel">
@@ -34,6 +35,7 @@ export default function Dashboard({ stats, weakSigns, bossUnlocked, onSelectModu
 
       <ProgressPanel stats={stats} />
       <WeakSignsPanel weakSigns={weakSigns} />
+      <PenaltyReview dueItems={dueReviewItems} casesById={casesById} />
 
       <section className="module-grid" aria-label="Training modules">
         {modules.map((module) => (

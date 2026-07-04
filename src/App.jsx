@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard.jsx';
 import TrainingCard from './components/TrainingCard.jsx';
 import { demoCases } from './data/cases.js';
 import {
+  getDueReviewItems,
   getStats,
   getWeakSigns,
   isBossUnlocked,
@@ -17,6 +18,11 @@ export default function App() {
   const [progress, setProgress] = useState(() => loadProgress());
   const stats = useMemo(() => getStats(progress), [progress]);
   const weakSigns = useMemo(() => getWeakSigns(progress), [progress]);
+  const dueReviewItems = useMemo(() => getDueReviewItems(progress), [progress]);
+  const casesById = useMemo(
+    () => Object.fromEntries(demoCases.map((caseItem) => [caseItem.id, caseItem])),
+    []
+  );
   const bossUnlocked = useMemo(() => isBossUnlocked(progress), [progress]);
 
   const moduleCases = useMemo(() => {
@@ -64,6 +70,8 @@ export default function App() {
       <Dashboard
         stats={stats}
         weakSigns={weakSigns}
+        dueReviewItems={dueReviewItems}
+        casesById={casesById}
         bossUnlocked={bossUnlocked}
         onSelectModule={selectModule}
       />
