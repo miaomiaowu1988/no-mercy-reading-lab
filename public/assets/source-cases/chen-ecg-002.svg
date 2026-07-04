@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-label="AI draft wide complex ECG teaching image">
+  <rect width="900" height="360" fill="#f7f4ec"/>
+  <g stroke="#e2d9ca" stroke-width="1">
+    <path d="M0 40H900M0 80H900M0 120H900M0 160H900M0 200H900M0 240H900M0 280H900M0 320H900"/>
+    <path d="M40 0V360M80 0V360M120 0V360M160 0V360M200 0V360M240 0V360M280 0V360M320 0V360M360 0V360M400 0V360M440 0V360M480 0V360M520 0V360M560 0V360M600 0V360M640 0V360M680 0V360M720 0V360M760 0V360M800 0V360M840 0V360M880 0V360"/>
+  </g>
+  <g fill="none" stroke="#202020" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <polyline points="10,184 48,184 82,92 128,272 168,184 204,184 238,96 286,270 326,184 366,184 398,88 446,278 488,184 528,184 562,94 610,272 650,184 690,184 724,90 772,278 814,184 854,184 890,120"/>
+  </g>
+  <text x="30" y="34" font-family="Arial, sans-serif" font-size="22" fill="#333">AI draft wide-complex ECG image - private learning</text>
+  <text x="30" y="338" font-family="Arial, sans-serif" font-size="18" fill="#555">Replace with verified WeChat article image after browser access</text>
+</svg>

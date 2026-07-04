@@ -1,0 +1,26 @@
+{
+  "accounts": [
+    {
+      "name": "丁香园呼吸时间",
+      "aliases": ["呼吸时间", "丁香园 呼吸时间"],
+      "topics": ["胸部CT", "肺结节", "ILD", "肺栓塞", "呼吸疑难病例"]
+    },
+    {
+      "name": "肺部影像联盟",
+      "aliases": ["肺部影像联盟"],
+      "topics": ["胸部CT", "肺结节", "磨玻璃结节", "树芽征", "间质性肺疾病"]
+    },
+    {
+      "name": "陈医生的心电图解读",
+      "aliases": ["陈医生的心电图解读", "陈医生 心电图解读"],
+      "topics": ["肺栓塞心电图", "呼吸困难心电图", "低氧房颤", "宽QRS心动过速"]
+    }
+  ],
+  "priority_rules": [
+    "Prefer respiratory CT cases, difficult respiratory cases, pulmonary embolism, ILD, lung nodules, and respiratory-emergency ECG.",
+    "Prefer articles with visible engagement metrics when available.",
+    "If engagement metrics are unavailable, rank by teaching value, case completeness, and source visibility.",
+    "Do not bypass login, CAPTCHA, anti-bot checks, or paywalls.",
+    "Generated cards are drafts for private learning only until medically reviewed."
+  ]
+}

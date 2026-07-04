@@ -306,6 +306,16 @@ h1 {
   filter: none;
 }
 
+.source-case-image {
+  display: block;
+  max-width: min(720px, 92%);
+  max-height: 290px;
+  object-fit: contain;
+  border: 1px solid rgba(220, 225, 220, 0.2);
+  border-radius: 6px;
+  background: #f7f4ec;
+}
+
 .visual-toolbar {
   position: absolute;
   left: 14px;
@@ -328,6 +338,28 @@ h1 {
 
 .case-body {
   padding: 22px;
+}
+
+.source-banner {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid rgba(185, 150, 86, 0.45);
+  border-radius: 8px;
+  background: rgba(122, 82, 24, 0.14);
+  color: #f4e3bd;
+}
+
+.source-banner span,
+.source-note {
+  color: #b7b2a6;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.source-note a {
+  color: #b9fff0;
 }
 
 .case-meta {

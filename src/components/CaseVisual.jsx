@@ -1,9 +1,11 @@
-export default function CaseVisual({ visual, modality }) {
+export default function CaseVisual({ image, visual, modality }) {
   const isEcg = modality === 'ECG';
 
   return (
     <div className={`case-visual ${isEcg ? 'ecg-visual' : 'ct-visual'} ${visual || ''}`}>
-      {isEcg ? (
+      {image?.src ? (
+        <img className="source-case-image" src={image.src} alt={image.alt || 'Source case image'} />
+      ) : isEcg ? (
         <svg viewBox="0 0 640 220" role="img" aria-label="Synthetic ECG educational waveform">
           <polyline
             points="0,110 45,110 55,96 65,124 78,110 130,110 145,65 160,154 176,110 230,110 250,102 270,118 290,110 350,110 365,75 380,150 396,110 455,110 470,98 490,120 512,110 640,110"
@@ -25,7 +27,7 @@ export default function CaseVisual({ visual, modality }) {
       <div className="visual-toolbar">
         <span>WL 420</span>
         <span>WW 1500</span>
-        <span>Slice 18/42</span>
+        <span>{image?.src ? 'Source image' : 'Slice 18/42'}</span>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import Dashboard from './components/Dashboard.jsx';
 import TrainingCard from './components/TrainingCard.jsx';
-import { demoCases } from './data/cases.js';
+import { allCases } from './data/allCases.js';
 import {
   getDueReviewItems,
   getStats,
@@ -20,14 +20,14 @@ export default function App() {
   const weakSigns = useMemo(() => getWeakSigns(progress), [progress]);
   const dueReviewItems = useMemo(() => getDueReviewItems(progress), [progress]);
   const casesById = useMemo(
-    () => Object.fromEntries(demoCases.map((caseItem) => [caseItem.id, caseItem])),
+    () => Object.fromEntries(allCases.map((caseItem) => [caseItem.id, caseItem])),
     []
   );
   const bossUnlocked = useMemo(() => isBossUnlocked(progress), [progress]);
 
   const moduleCases = useMemo(() => {
     if (!selectedModule) return [];
-    return demoCases.filter((caseItem) => caseItem.module === selectedModule);
+    return allCases.filter((caseItem) => caseItem.module === selectedModule);
   }, [selectedModule]);
 
   function selectModule(moduleName) {

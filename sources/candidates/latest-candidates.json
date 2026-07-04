@@ -1,0 +1,126 @@
+{
+  "generated_at": "2026-07-04T18:32:48.970Z",
+  "usage_scope": "private_learning_only",
+  "verification_status": "candidate_list_not_medically_reviewed",
+  "rules": [
+    "Prefer respiratory CT cases, difficult respiratory cases, pulmonary embolism, ILD, lung nodules, and respiratory-emergency ECG.",
+    "Prefer articles with visible engagement metrics when available.",
+    "If engagement metrics are unavailable, rank by teaching value, case completeness, and source visibility.",
+    "Do not bypass login, CAPTCHA, anti-bot checks, or paywalls.",
+    "Generated cards are drafts for private learning only until medically reviewed."
+  ],
+  "candidates": [
+    {
+      "account": "丁香园呼吸时间",
+      "topic": "胸部CT",
+      "query": "\"呼吸时间\" \"胸部CT\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E5%91%BC%E5%90%B8%E6%97%B6%E9%97%B4%22%20%22%E8%83%B8%E9%83%A8CT%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "丁香园呼吸时间",
+      "topic": "肺结节",
+      "query": "\"呼吸时间\" \"肺结节\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E5%91%BC%E5%90%B8%E6%97%B6%E9%97%B4%22%20%22%E8%82%BA%E7%BB%93%E8%8A%82%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "丁香园呼吸时间",
+      "topic": "ILD",
+      "query": "\"呼吸时间\" \"ILD\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E5%91%BC%E5%90%B8%E6%97%B6%E9%97%B4%22%20%22ILD%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "丁香园呼吸时间",
+      "topic": "肺栓塞",
+      "query": "\"呼吸时间\" \"肺栓塞\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E5%91%BC%E5%90%B8%E6%97%B6%E9%97%B4%22%20%22%E8%82%BA%E6%A0%93%E5%A1%9E%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "丁香园呼吸时间",
+      "topic": "呼吸疑难病例",
+      "query": "\"呼吸时间\" \"呼吸疑难病例\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E5%91%BC%E5%90%B8%E6%97%B6%E9%97%B4%22%20%22%E5%91%BC%E5%90%B8%E7%96%91%E9%9A%BE%E7%97%85%E4%BE%8B%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "肺部影像联盟",
+      "topic": "胸部CT",
+      "query": "\"肺部影像联盟\" \"胸部CT\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E8%82%BA%E9%83%A8%E5%BD%B1%E5%83%8F%E8%81%94%E7%9B%9F%22%20%22%E8%83%B8%E9%83%A8CT%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "肺部影像联盟",
+      "topic": "肺结节",
+      "query": "\"肺部影像联盟\" \"肺结节\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E8%82%BA%E9%83%A8%E5%BD%B1%E5%83%8F%E8%81%94%E7%9B%9F%22%20%22%E8%82%BA%E7%BB%93%E8%8A%82%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "肺部影像联盟",
+      "topic": "磨玻璃结节",
+      "query": "\"肺部影像联盟\" \"磨玻璃结节\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E8%82%BA%E9%83%A8%E5%BD%B1%E5%83%8F%E8%81%94%E7%9B%9F%22%20%22%E7%A3%A8%E7%8E%BB%E7%92%83%E7%BB%93%E8%8A%82%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "肺部影像联盟",
+      "topic": "树芽征",
+      "query": "\"肺部影像联盟\" \"树芽征\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E8%82%BA%E9%83%A8%E5%BD%B1%E5%83%8F%E8%81%94%E7%9B%9F%22%20%22%E6%A0%91%E8%8A%BD%E5%BE%81%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "肺部影像联盟",
+      "topic": "间质性肺疾病",
+      "query": "\"肺部影像联盟\" \"间质性肺疾病\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E8%82%BA%E9%83%A8%E5%BD%B1%E5%83%8F%E8%81%94%E7%9B%9F%22%20%22%E9%97%B4%E8%B4%A8%E6%80%A7%E8%82%BA%E7%96%BE%E7%97%85%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "陈医生的心电图解读",
+      "topic": "肺栓塞心电图",
+      "query": "\"陈医生的心电图解读\" \"肺栓塞心电图\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E9%99%88%E5%8C%BB%E7%94%9F%E7%9A%84%E5%BF%83%E7%94%B5%E5%9B%BE%E8%A7%A3%E8%AF%BB%22%20%22%E8%82%BA%E6%A0%93%E5%A1%9E%E5%BF%83%E7%94%B5%E5%9B%BE%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "陈医生的心电图解读",
+      "topic": "呼吸困难心电图",
+      "query": "\"陈医生的心电图解读\" \"呼吸困难心电图\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E9%99%88%E5%8C%BB%E7%94%9F%E7%9A%84%E5%BF%83%E7%94%B5%E5%9B%BE%E8%A7%A3%E8%AF%BB%22%20%22%E5%91%BC%E5%90%B8%E5%9B%B0%E9%9A%BE%E5%BF%83%E7%94%B5%E5%9B%BE%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "陈医生的心电图解读",
+      "topic": "低氧房颤",
+      "query": "\"陈医生的心电图解读\" \"低氧房颤\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E9%99%88%E5%8C%BB%E7%94%9F%E7%9A%84%E5%BF%83%E7%94%B5%E5%9B%BE%E8%A7%A3%E8%AF%BB%22%20%22%E4%BD%8E%E6%B0%A7%E6%88%BF%E9%A2%A4%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    },
+    {
+      "account": "陈医生的心电图解读",
+      "topic": "宽QRS心动过速",
+      "query": "\"陈医生的心电图解读\" \"宽QRS心动过速\" site:mp.weixin.qq.com OR site:qq.com OR site:doctorpda.cn OR site:yxppt.com",
+      "search_url": "https://www.bing.com/search?q=%22%E9%99%88%E5%8C%BB%E7%94%9F%E7%9A%84%E5%BF%83%E7%94%B5%E5%9B%BE%E8%A7%A3%E8%AF%BB%22%20%22%E5%AE%BDQRS%E5%BF%83%E5%8A%A8%E8%BF%87%E9%80%9F%22%20site%3Amp.weixin.qq.com%20OR%20site%3Aqq.com%20OR%20site%3Adoctorpda.cn%20OR%20site%3Ayxppt.com",
+      "status": "candidate_search_only",
+      "next_step": "Open search results, keep only publicly accessible articles, then convert verified pages into source draft cards."
+    }
+  ]
+}

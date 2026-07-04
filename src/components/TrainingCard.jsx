@@ -27,9 +27,15 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext 
         </span>
       </header>
 
-      <CaseVisual visual={caseItem.visual} modality={caseItem.modality} />
+      <CaseVisual image={caseItem.image} visual={caseItem.visual} modality={caseItem.modality} />
 
       <section className="case-body">
+        {caseItem.content_type === 'real_source_draft' && (
+          <div className="source-banner">
+            <strong>Source draft</strong>
+            <span>AI-generated draft, not medically reviewed. Private learning use only.</span>
+          </div>
+        )}
         <p className="case-meta">
           {caseItem.modality} · {caseItem.difficulty} · {caseItem.chief_skill}
         </p>
@@ -77,6 +83,15 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext 
             <p>{caseItem.must_not_miss}</p>
             <h4>Explanation</h4>
             <p>{caseItem.explanation}</p>
+            {caseItem.source?.url && (
+              <p className="source-note">
+                Source: {caseItem.source.account || caseItem.source.title}{' '}
+                <a href={caseItem.source.url} target="_blank" rel="noreferrer">
+                  original link
+                </a>
+              </p>
+            )}
+            {caseItem.image_credit && <p className="source-note">{caseItem.image_credit}</p>}
             <button className="primary-action" onClick={next} type="button">
               Again, Doctor
             </button>
