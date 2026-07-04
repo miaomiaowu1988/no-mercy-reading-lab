@@ -17,16 +17,19 @@ Dr. Xie's Diagnostic Bootcamp is a respiratory-focused diagnostic training proto
 
 ## Compliance Note
 
-The MVP does not use real patient data, copyrighted scans, or large-scale scraping. Demonstration cases are synthetic educational placeholders. Later article ingestion should preserve source links and structured learning summaries only, with human medical review.
+The MVP does not use real patient data, copyrighted scans, or republished article images. Demonstration cases are synthetic educational placeholders. Later article ingestion should preserve source links and structured learning summaries only, with human medical review.
 
 ## Run Locally
 
 ```powershell
 npm install
+npm run build
 npm run dev
 ```
 
 Open the local Vite URL shown in the terminal.
+
+Then run local browser checks against the dashboard and modules described in the task brief.
 
 ## Interview Pitch
 
