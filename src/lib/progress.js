@@ -76,6 +76,7 @@ export function recordReviewResult(progress, caseId, wasCorrect, now = new Date(
     return nextProgress;
   }
 
+  nextProgress.xp += 10;
   existing.reviewStage += 1;
   if (existing.reviewStage >= 3) {
     existing.mastery_status = 'mastered';
