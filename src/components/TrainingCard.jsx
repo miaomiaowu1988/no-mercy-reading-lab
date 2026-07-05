@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import CaseVisual from './CaseVisual.jsx';
 
-export default function TrainingCard({ caseItem, index, total, onCommit, onNext }) {
+export default function TrainingCard({ caseItem, index, total, onCommit, onNext, onReportIssue }) {
   const [selected, setSelected] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [reported, setReported] = useState(false);
   const isCorrect = submitted && selected === caseItem.answer;
 
   function commit() {
@@ -15,16 +16,28 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext 
   function next() {
     setSelected('');
     setSubmitted(false);
+    setReported(false);
     onNext();
+  }
+
+  function reportIssue() {
+    onReportIssue?.(caseItem);
+    setReported(true);
   }
 
   return (
     <article className="training-card">
       <header className="case-header">
-        <span>{caseItem.module}</span>
-        <span>
-          {index + 1}/{total}
-        </span>
+        <div>
+          <strong>{caseItem.module}</strong>
+          <p className="batch-label">Demo batch</p>
+        </div>
+        <div className="case-progress">
+          <span>
+            {index + 1}/{total}
+          </span>
+          <small>{Math.round(((index + 1) / total) * 100)}% through this set</small>
+        </div>
       </header>
 
       <CaseVisual image={caseItem.image} visual={caseItem.visual} modality={caseItem.modality} />
@@ -41,6 +54,11 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext 
         </p>
         <h2>{caseItem.title}</h2>
         <p>{caseItem.history}</p>
+        <div className="case-actions">
+          <button className="secondary-action report-action" onClick={reportIssue} type="button">
+            {reported ? 'Issue reported' : 'Report issue'}
+          </button>
+        </div>
         <h3>{caseItem.question}</h3>
         <div className="option-grid">
           {caseItem.options.map((option) => (
@@ -92,9 +110,14 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext 
               </p>
             )}
             {caseItem.image_credit && <p className="source-note">{caseItem.image_credit}</p>}
-            <button className="primary-action" onClick={next} type="button">
-              Again, Doctor
-            </button>
+            <div className="reveal-actions">
+              <button className="secondary-action report-action" onClick={reportIssue} type="button">
+                {reported ? 'Issue reported' : 'Report issue'}
+              </button>
+              <button className="primary-action" onClick={next} type="button">
+                Again, Doctor
+              </button>
+            </div>
           </section>
         )}
       </section>

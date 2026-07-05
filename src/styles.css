@@ -102,6 +102,22 @@ h1 {
   margin: 16px 0 0;
 }
 
+.hero-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.continue-action {
+  justify-self: start;
+}
+
+.recommendation-copy {
+  color: #c7d8d4;
+  margin: 0;
+  max-width: 48rem;
+}
+
 .panel {
   border: 1px solid rgba(136, 160, 170, 0.22);
   background: rgba(10, 13, 13, 0.88);
@@ -143,6 +159,12 @@ h1 {
 .module-card span:last-of-type {
   color: #a6bac2;
   line-height: 1.45;
+}
+
+.module-status {
+  color: #8ea1aa;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 .module-card.locked {
@@ -206,7 +228,8 @@ h1 {
 }
 
 .back-button,
-.primary-action {
+.primary-action,
+.secondary-action {
   border: 0;
   border-radius: 8px;
   background: #2fe6b8;
@@ -220,6 +243,11 @@ h1 {
   background: rgba(255, 255, 255, 0.08);
   color: #edf7f5;
   margin-bottom: 16px;
+}
+
+.secondary-action {
+  background: rgba(255, 255, 255, 0.08);
+  color: #edf7f5;
 }
 
 .training-card {
@@ -236,6 +264,22 @@ h1 {
   padding: 14px 18px;
   border-bottom: 1px solid rgba(136, 160, 170, 0.18);
   color: #9fb1bb;
+}
+
+.case-header strong {
+  color: #edf7f5;
+}
+
+.batch-label,
+.case-progress small {
+  color: #8ea1aa;
+  margin: 4px 0 0;
+}
+
+.case-progress {
+  display: grid;
+  justify-items: end;
+  text-align: right;
 }
 
 .case-visual {
@@ -366,6 +410,18 @@ h1 {
   color: #8ea1aa;
 }
 
+.case-actions,
+.reveal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 0;
+}
+
+.report-action {
+  padding-inline: 14px;
+}
+
 .option-grid {
   display: grid;
   gap: 10px;
@@ -440,5 +496,10 @@ h1 {
   .case-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .case-progress {
+    justify-items: start;
+    text-align: left;
   }
 }

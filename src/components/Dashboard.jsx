@@ -21,7 +21,17 @@ const modules = [
   }
 ];
 
-export default function Dashboard({ stats, weakSigns, dueReviewItems, casesById, bossUnlocked, onSelectModule }) {
+export default function Dashboard({
+  stats,
+  weakSigns,
+  dueReviewItems,
+  casesById,
+  bossUnlocked,
+  recommendation,
+  moduleSummaries,
+  onContinueTraining,
+  onSelectModule
+}) {
   return (
     <div className="dashboard">
       <section className="hero-panel">
@@ -31,6 +41,14 @@ export default function Dashboard({ stats, weakSigns, dueReviewItems, casesById,
         <p className="intro">
           Respiratory-focused diagnostic training for chest CT, hard cases, and respiratory-emergency ECG recognition.
         </p>
+        <div className="hero-actions">
+          <button className="primary-action continue-action" onClick={onContinueTraining} type="button">
+            Continue Training
+          </button>
+          <p className="recommendation-copy">
+            {recommendation?.module ? `Today's recommendation: ${recommendation.module}. ${recommendation.reason}` : 'Pick any module to start a demo batch.'}
+          </p>
+        </div>
       </section>
 
       <ProgressPanel stats={stats} />
@@ -38,9 +56,19 @@ export default function Dashboard({ stats, weakSigns, dueReviewItems, casesById,
       <PenaltyReview dueItems={dueReviewItems} casesById={casesById} />
 
       <section className="module-grid" aria-label="Training modules">
-        {modules.map((module) => (
-          <ModuleCard key={module.title} {...module} onClick={() => onSelectModule(module.title)} />
-        ))}
+        {modules.map((module) => {
+          const summary = moduleSummaries.find((item) => item.title === module.title);
+          return (
+            <ModuleCard
+              key={module.title}
+              {...module}
+              demoCount={summary?.demoCount || 0}
+              completedCount={summary?.completedCount || 0}
+              totalCount={summary?.totalCount || summary?.demoCount || 0}
+              onClick={() => onSelectModule(module.title)}
+            />
+          );
+        })}
         <ModuleCard
           title="Boss Case"
           meta="Locked challenge"
@@ -49,6 +77,9 @@ export default function Dashboard({ stats, weakSigns, dueReviewItems, casesById,
               ? 'Multi-step clinical reasoning challenge unlocked.'
               : 'Complete 12 cases with accuracy >=70% or reach a 5-case streak.'
           }
+          demoCount={4}
+          completedCount={0}
+          totalCount={4}
           locked={!bossUnlocked}
           onClick={() => onSelectModule('Boss Case')}
         />

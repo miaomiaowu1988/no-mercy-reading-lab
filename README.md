@@ -4,6 +4,14 @@ Swipe. Guess. Reveal. Remember.
 
 Dr. Xie's Diagnostic Bootcamp is a respiratory-focused diagnostic training prototype for chest CT, difficult respiratory cases, and respiratory-emergency ECG recognition.
 
+## v0.1
+
+- Dashboard with a `Continue Training` recommendation
+- 10-question demo batches, capped by available module content
+- LocalStorage-backed answer progress, streaks, and demo-batch state
+- Lightweight `Report issue` action on training cards
+- Source-backed CT and ECG draft cases mixed into demo sessions
+
 ## MVP Scope
 
 - Daily CT
@@ -41,6 +49,35 @@ npm run dev
 Open the local Vite URL shown in the terminal.
 
 Then run local browser checks against the dashboard and modules described in the task brief.
+
+## Deploy to Vercel
+
+1. Push this project to a Git repository on GitHub.
+2. Sign in to [Vercel](https://vercel.com/).
+3. Click `Add New...` -> `Project`.
+4. Import the repository.
+5. Keep the default Vite settings:
+   - Framework Preset: `Vite`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+6. Click `Deploy`.
+
+After deployment, Vercel will give you a public URL such as:
+
+```text
+https://no-mercy-reading-lab.vercel.app
+```
+
+That public URL is the one you can open on your phone anywhere.
+
+## Add to Home Screen
+
+After opening the Vercel URL on your phone:
+
+- iPhone Safari: tap `Share` -> `Add to Home Screen`
+- Android Chrome: tap the menu -> `Add to Home screen` or `Install app`
+
+The project now includes a web app manifest, theme color, and app icons so it behaves more like an installed web app.
 
 ## Interview Pitch
 

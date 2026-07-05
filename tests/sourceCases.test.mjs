@@ -21,9 +21,22 @@ test('source cases carry private-learning and draft-review metadata', () => {
     assert.equal(sourceCase.content_type, 'real_source_draft');
     assert.equal(sourceCase.verification_status, 'ai_generated_draft_not_medically_reviewed');
     assert.equal(sourceCase.usage_scope, 'private_learning_only');
-    assert.match(sourceCase.source.url, /^https:\/\/mp\.weixin\.qq\.com\/s\//);
+    assert.match(sourceCase.source.url, /^https:\/\//);
     assert.ok(sourceCase.source.account);
     assert.ok(sourceCase.image_credit);
+  }
+});
+
+test('source cases include CT drafts from requested respiratory accounts', () => {
+  const requestedCtAccounts = new Set(['肺部影像联盟', '丁香园呼吸时间']);
+  const ctAccounts = new Set(
+    sourceCases
+      .filter((sourceCase) => sourceCase.modality === 'Chest CT')
+      .map((sourceCase) => sourceCase.source.account)
+  );
+
+  for (const account of requestedCtAccounts) {
+    assert.ok(ctAccounts.has(account), `missing Chest CT source case from ${account}`);
   }
 });
 

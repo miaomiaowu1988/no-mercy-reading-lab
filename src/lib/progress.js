@@ -5,11 +5,15 @@ export function createInitialProgress() {
     completed: 0,
     correct: 0,
     xp: 0,
+    streakBonusXp: 0,
     streak: 0,
     bestStreak: 0,
     answers: {},
     weakSigns: {},
-    reviewQueue: []
+    reviewQueue: [],
+    activeBatch: null,
+    lastRecommendation: null,
+    issueReports: []
   };
 }
 
@@ -27,28 +31,44 @@ export function saveProgress(progress) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 }
 
-export function recordAnswer(progress, caseItem, selectedAnswer) {
+export function recordAnswer(progress, caseItem, selectedAnswer, batchContext = null) {
   const currentProgress = normalizeProgress(progress);
   const isCorrect = selectedAnswer === caseItem.answer;
   const now = new Date();
+  const nextStreak = isCorrect ? currentProgress.streak + 1 : 0;
+  const streakBonusXp = getStreakBonus(nextStreak);
   const nextProgress = normalizeProgress({
     ...currentProgress,
     completed: currentProgress.completed + 1,
     correct: currentProgress.correct + (isCorrect ? 1 : 0),
-    xp: currentProgress.xp + 10 + (isCorrect ? 20 : 0),
-    streak: isCorrect ? currentProgress.streak + 1 : 0,
-    bestStreak: Math.max(currentProgress.bestStreak, isCorrect ? currentProgress.streak + 1 : 0),
+    xp: currentProgress.xp + 10 + (isCorrect ? 20 : 0) + streakBonusXp,
+    streakBonusXp: currentProgress.streakBonusXp + streakBonusXp,
+    streak: nextStreak,
+    bestStreak: Math.max(currentProgress.bestStreak, nextStreak),
     answers: {
       ...currentProgress.answers,
       [caseItem.id]: {
         selectedAnswer,
         correct: isCorrect,
-        answeredAt: now.toISOString()
+        answeredAt: now.toISOString(),
+        batchId: batchContext?.batchId || null,
+        module: batchContext?.module || caseItem.module || null
       }
     },
     weakSigns: { ...currentProgress.weakSigns },
-    reviewQueue: [...currentProgress.reviewQueue]
+    reviewQueue: [...currentProgress.reviewQueue],
+    issueReports: [...currentProgress.issueReports],
+    lastRecommendation: currentProgress.lastRecommendation
   });
+
+  if (batchContext) {
+    nextProgress.activeBatch = {
+      batchId: batchContext.batchId,
+      module: batchContext.module,
+      totalCount: batchContext.batchSize,
+      completedCount: countBatchAnswers(nextProgress.answers, batchContext.batchId)
+    };
+  }
 
   if (!isCorrect) {
     for (const sign of caseItem.must_know_signs || caseItem.signs || []) {
@@ -58,6 +78,24 @@ export function recordAnswer(progress, caseItem, selectedAnswer) {
   }
 
   return nextProgress;
+}
+
+export function reportCaseIssue(progress, caseItem, issue) {
+  const currentProgress = normalizeProgress(progress);
+  return normalizeProgress({
+    ...currentProgress,
+    issueReports: [
+      ...currentProgress.issueReports,
+      {
+        caseId: caseItem.id,
+        module: caseItem.module,
+        type: issue.type,
+        note: issue.note || '',
+        status: 'reported',
+        reportedAt: new Date().toISOString()
+      }
+    ]
+  });
 }
 
 export function recordReviewResult(progress, caseId, wasCorrect, now = new Date()) {
@@ -155,10 +193,24 @@ function normalizeProgress(progress) {
     ...progress,
     answers: isPlainObject(progress?.answers) ? progress.answers : base.answers,
     weakSigns: isPlainObject(progress?.weakSigns) ? progress.weakSigns : base.weakSigns,
-    reviewQueue: Array.isArray(progress?.reviewQueue) ? progress.reviewQueue : base.reviewQueue
+    reviewQueue: Array.isArray(progress?.reviewQueue) ? progress.reviewQueue : base.reviewQueue,
+    issueReports: Array.isArray(progress?.issueReports) ? progress.issueReports : base.issueReports,
+    activeBatch: isPlainObject(progress?.activeBatch) ? progress.activeBatch : base.activeBatch,
+    lastRecommendation: isPlainObject(progress?.lastRecommendation) ? progress.lastRecommendation : base.lastRecommendation
   };
 }
 
 function isPlainObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function countBatchAnswers(answers, batchId) {
+  return Object.values(answers).filter((entry) => entry.batchId === batchId).length;
+}
+
+function getStreakBonus(streak) {
+  if (streak === 10) return 25;
+  if (streak === 5) return 15;
+  if (streak === 3) return 10;
+  return 0;
 }

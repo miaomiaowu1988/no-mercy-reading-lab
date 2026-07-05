@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Dr. Xie diagnostic bootcamp icon">
+  <rect width="128" height="128" rx="24" fill="#111616" />
+  <rect x="16" y="16" width="96" height="96" rx="18" fill="#1a2323" stroke="#365655" stroke-width="4" />
+  <circle cx="64" cy="64" r="30" fill="#dce3e1" />
+  <path d="M40 64c0-17 11-30 24-30S88 47 88 64" fill="#6d7978" />
+  <path d="M47 46c-8 6-13 17-13 28 0 17 13 31 30 31" fill="none" stroke="#0d1111" stroke-width="7" stroke-linecap="round" />
+  <path d="M81 46c8 6 13 17 13 28 0 17-13 31-30 31" fill="none" stroke="#0d1111" stroke-width="7" stroke-linecap="round" />
+  <path d="M64 18v16M18 64h16M94 64h16M64 94v16" stroke="#7de1c8" stroke-width="6" stroke-linecap="round" />
+  <circle cx="77" cy="54" r="6" fill="#7de1c8" opacity="0.9" />
+</svg>

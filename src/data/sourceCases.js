@@ -104,5 +104,111 @@ export const sourceCases = [
     learning_points: ['Compression artifact can mislead rhythm interpretation.', 'Clinical correlation is mandatory during resuscitation.'],
     review_interval_days: 1,
     mastery_status: 'new'
+  },
+  {
+    id: 'source-pulmonary-imaging-nodule-001',
+    module: 'Daily CT',
+    title: 'Small pulmonary nodule: thin-slice reconstruction changes the read',
+    difficulty: 'Intermediate',
+    body_system: 'Respiratory',
+    modality: 'Chest CT',
+    chief_skill: 'management_next_step',
+    cognitive_level: 'management',
+    urgency: 'routine',
+    content_type: 'real_source_draft',
+    verification_status: 'ai_generated_draft_not_medically_reviewed',
+    usage_scope: 'private_learning_only',
+    history: 'A woman had a right upper lung nodule found on routine CT screening in 2015. It was about 5 mm, mixed density, sharply marginated, and initially raised concern for early lung cancer. Follow-up showed no meaningful change in size, morphology, or density over years.',
+    image: {
+      type: 'local_source_asset',
+      src: '/assets/source-cases/pulmonary-imaging-nodule-20201007.jpg',
+      alt: 'Chest CT image from a pulmonary nodule case shared by Pulmonary Imaging Alliance'
+    },
+    image_credit: 'Image cached locally from the linked public article mirror for private learning only; watermark preserved.',
+    visual: 'source-chest-ct',
+    question_type: 'single_choice',
+    question: 'For this small pulmonary nodule case, which next step best reduces over-calling malignancy?',
+    options: [
+      'Review thin-slice target reconstruction and multiplanar/3D morphology before deciding on surgery',
+      'Call it definite early lung cancer from a single axial image',
+      'Ignore it because all 5 mm nodules are benign',
+      'Treat empirically with chemotherapy'
+    ],
+    answer: 'Review thin-slice target reconstruction and multiplanar/3D morphology before deciding on surgery',
+    signs: ['Small mixed-density nodule', 'Stable long-term follow-up', 'Thin-slice target reconstruction', 'MPR/MIP/VR morphology'],
+    must_know_signs: ['Stability over time', 'Shape on MPR and 3D reconstruction'],
+    reasoning_steps: [
+      'Start with size, density, margin, and relationship to pleura on the axial CT image.',
+      'Check prior examinations: long-term stability substantially lowers malignant probability.',
+      'Use thin-slice target reconstruction and multiplanar/3D views to decide whether the apparent nodule is actually a linear or plaque-like inflammatory/fibrotic focus.'
+    ],
+    explanation: 'The source case describes a small mixed-density pulmonary nodule that looked concerning on axial CT but stayed stable over years. Thin-slice target reconstruction plus coronal MPR, MIP, and VR showed a smoother linear/flat morphology, making an inflammatory/fibrotic lesion more likely than invasive malignancy. This is a good training case for not making a management decision from one axial slice alone.',
+    differential: ['Inflammatory nodule', 'Focal fibrosis', 'Atypical adenomatous hyperplasia', 'Minimally invasive adenocarcinoma'],
+    common_trap: 'Equating irregular or mixed-density appearance on one image with definite cancer.',
+    must_not_miss: 'Persistent growth, increasing solid component, spiculation, pleural retraction, or a high-risk clinical context should prompt escalation.',
+    pitfall: 'Skipping prior-image comparison and reconstruction review before recommending an invasive step.',
+    source: {
+      type: 'public_account_article_mirror',
+      account: '肺部影像联盟',
+      title: '一枚肺小结节的故事',
+      publish_time: '2020-10-07',
+      url: 'https://www.cmtopdr.com/post/detail/41e47b5c-7332-4775-ae64-188976b1e236'
+    },
+    learning_points: ['Small nodules need serial comparison and reconstruction review.', 'MPR/MIP/VR can reveal linear or flat morphology hidden on axial slices.'],
+    review_interval_days: 2,
+    mastery_status: 'new'
+  },
+  {
+    id: 'source-dxy-respiratory-influenza-ct-001',
+    module: 'Daily CT',
+    title: 'H1N1 influenza viral pneumonia on chest CT',
+    difficulty: 'Hard',
+    body_system: 'Respiratory',
+    modality: 'Chest CT',
+    chief_skill: 'pattern_recognition',
+    cognitive_level: 'diagnosis',
+    urgency: 'urgent',
+    content_type: 'real_source_draft',
+    verification_status: 'ai_generated_draft_not_medically_reviewed',
+    usage_scope: 'private_learning_only',
+    history: 'A 58-year-old man presented with fever, cough, sore throat, and generalized aches for 3 days. The source case asks the reader to infer the likely microbial category and pathogen from the chest CT pattern.',
+    image: {
+      type: 'local_source_asset',
+      src: '/assets/source-cases/dxy-respiratory-influenza-ct-20250109.jpg',
+      alt: 'Annotated chest CT image from a DXY Respiratory Time article about H1N1 influenza viral pneumonia'
+    },
+    image_credit: 'Image cached locally from the linked Tencent News mirror of the public account article for private learning only; annotation preserved.',
+    visual: 'source-chest-ct',
+    question_type: 'single_choice',
+    question: 'Based on the source article teaching point, which pathogen is most favored by this CT pattern and history?',
+    options: [
+      'H1N1 influenza virus',
+      'Mycobacterium tuberculosis',
+      'Aspergillus fumigatus',
+      'Typical pneumococcal lobar pneumonia'
+    ],
+    answer: 'H1N1 influenza virus',
+    signs: ['Subpleural distribution', 'Wedge-like opacities with apex toward the hilum', 'Interlobular septal thickening', 'Viral pneumonia clinical syndrome'],
+    must_know_signs: ['Wedge-like lobular involvement', 'Interlobular septal thickening'],
+    reasoning_steps: [
+      'Use the clinical syndrome first: fever, cough, sore throat, and myalgia suggest an acute viral respiratory infection.',
+      'On CT, look for subpleural disease plus lobular filling/limitation, including wedge-shaped lesions whose apex points toward the hilum.',
+      'Interlobular septal thickening in this context supports the source article diagnosis of H1N1 influenza viral pneumonia.'
+    ],
+    explanation: 'The source article frames the answer as H1N1 influenza virus. It highlights subpleural lesions that can resemble COVID-19 pneumonia, while emphasizing lobular filling/limitation, wedge-shaped lesions, and visible interlobular septal thickening. This card is meant for pattern recall, not standalone clinical diagnosis.',
+    differential: ['Influenza viral pneumonia', 'COVID-19 pneumonia', 'Other viral pneumonia', 'Atypical bacterial pneumonia'],
+    common_trap: 'Calling every subpleural viral-looking pneumonia COVID-19 without checking the full pattern and epidemic context.',
+    must_not_miss: 'Assess oxygenation, severity, coinfection risk, and need for antiviral treatment or admission according to clinical context.',
+    pitfall: 'Over-reading one CT sign without integrating symptoms, seasonality, testing, and severity.',
+    source: {
+      type: 'public_account_article_mirror',
+      account: '丁香园呼吸时间',
+      title: '如何在肺 CT 上一眼识别甲流病毒性肺炎？',
+      publish_time: '2025-01-09 20:00',
+      url: 'https://news.qq.com/rain/a/20250109A08Y4N00'
+    },
+    learning_points: ['Influenza viral pneumonia may show subpleural disease but has useful distinguishing CT clues.', 'Pattern recognition must be combined with clinical and epidemiologic context.'],
+    review_interval_days: 2,
+    mastery_status: 'new'
   }
 ];

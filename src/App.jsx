@@ -2,12 +2,14 @@ import { useMemo, useState } from 'react';
 import Dashboard from './components/Dashboard.jsx';
 import TrainingCard from './components/TrainingCard.jsx';
 import { allCases } from './data/allCases.js';
+import { buildDemoBatch, getContinueTrainingRecommendation } from './lib/batchRouter.js';
 import {
   getDueReviewItems,
   getStats,
   getWeakSigns,
   isBossUnlocked,
   loadProgress,
+  reportCaseIssue,
   recordAnswer,
   saveProgress
 } from './lib/progress.js';
@@ -24,19 +26,59 @@ export default function App() {
     []
   );
   const bossUnlocked = useMemo(() => isBossUnlocked(progress), [progress]);
+  const recommendation = useMemo(
+    () => getContinueTrainingRecommendation(progress, allCases),
+    [progress]
+  );
+  const moduleSummaries = useMemo(
+    () =>
+      ['Daily CT', 'Hard Cases', 'ECG Flashcards'].map((moduleName) => {
+        const demoBatch = buildDemoBatch(allCases, moduleName);
+        const inProgress = progress.activeBatch?.module === moduleName ? progress.activeBatch : null;
+        return {
+          title: moduleName,
+          demoCount: demoBatch.length,
+          completedCount: inProgress?.completedCount || 0,
+          totalCount: inProgress?.totalCount || demoBatch.length
+        };
+      }),
+    [progress]
+  );
 
   const moduleCases = useMemo(() => {
     if (!selectedModule) return [];
-    return allCases.filter((caseItem) => caseItem.module === selectedModule);
+    return buildDemoBatch(allCases, selectedModule);
   }, [selectedModule]);
+  const activeBatchId = useMemo(
+    () => (selectedModule ? `${selectedModule.toLowerCase().replace(/\s+/g, '-')}-demo` : null),
+    [selectedModule]
+  );
 
   function selectModule(moduleName) {
     setSelectedModule(moduleName);
     setCardIndex(0);
   }
 
+  function continueTraining() {
+    if (!recommendation.module) return;
+    selectModule(recommendation.module);
+  }
+
   function handleCommit(caseItem, selectedAnswer) {
-    const nextProgress = recordAnswer(progress, caseItem, selectedAnswer);
+    const nextProgress = recordAnswer(progress, caseItem, selectedAnswer, {
+      module: selectedModule,
+      batchSize: moduleCases.length,
+      batchId: activeBatchId
+    });
+    setProgress(nextProgress);
+    saveProgress(nextProgress);
+  }
+
+  function handleReportIssue(caseItem) {
+    const nextProgress = reportCaseIssue(progress, caseItem, {
+      type: 'other',
+      note: 'Flagged from demo mode card.'
+    });
     setProgress(nextProgress);
     saveProgress(nextProgress);
   }
@@ -59,6 +101,7 @@ export default function App() {
             total={moduleCases.length}
             onCommit={handleCommit}
             onNext={nextCard}
+            onReportIssue={handleReportIssue}
           />
         )}
       </main>
@@ -73,6 +116,9 @@ export default function App() {
         dueReviewItems={dueReviewItems}
         casesById={casesById}
         bossUnlocked={bossUnlocked}
+        recommendation={recommendation}
+        moduleSummaries={moduleSummaries}
+        onContinueTraining={continueTraining}
         onSelectModule={selectModule}
       />
     </main>
