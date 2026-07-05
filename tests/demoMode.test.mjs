@@ -14,11 +14,11 @@ test('buildDemoBatch returns at most 10 module cases and keeps source drafts fir
   assert.equal(dailyCtBatch[0].id, 'source-pulmonary-imaging-nodule-001');
   assert.equal(dailyCtBatch[1].id, 'source-dxy-respiratory-influenza-ct-001');
 
-  assert.equal(ecgBatch.length, 8);
+  assert.equal(ecgBatch.length, 10);
   assert.equal(ecgBatch[0].id, 'source-chen-ecg-001');
   assert.equal(ecgBatch[1].id, 'source-chen-ecg-002');
 
-  assert.equal(hardCaseBatch.length, 6);
+  assert.equal(hardCaseBatch.length, 10);
   assert.ok(hardCaseBatch.every((caseItem) => caseItem.module === 'Hard Cases'));
 });
 
@@ -49,13 +49,15 @@ test('recordAnswer stores active batch progress and streak bonus XP for demo mod
     batchId: 'daily-ct-demo'
   });
 
-  nextProgress = recordAnswer(nextProgress, allCases.find((item) => item.id === 'ct-002'), 'Tree-in-bud', {
+  const secondCase = allCases.find((item) => item.id === 'ct-002');
+  nextProgress = recordAnswer(nextProgress, secondCase, secondCase.answer, {
     module: 'Daily CT',
     batchSize: 10,
     batchId: 'daily-ct-demo'
   });
 
-  nextProgress = recordAnswer(nextProgress, allCases.find((item) => item.id === 'ct-003'), 'Spiculated margin', {
+  const thirdCase = allCases.find((item) => item.id === 'ct-003');
+  nextProgress = recordAnswer(nextProgress, thirdCase, thirdCase.answer, {
     module: 'Daily CT',
     batchSize: 10,
     batchId: 'daily-ct-demo'

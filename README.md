@@ -38,6 +38,30 @@ npm run refresh:sources
 
 This writes candidate search records to `sources/candidates/latest-candidates.json`. WeChat articles that require login or verification must be opened by the user in the browser; the project does not bypass verification, CAPTCHA, anti-bot checks, or access controls.
 
+## Automatic Draft Case Updates
+
+The repository includes a GitHub Actions workflow at `.github/workflows/auto-update-cases.yml`.
+
+It runs every Monday at 02:00 UTC, and can also be started manually from the GitHub Actions tab. The workflow:
+
+- refreshes `sources/candidates/latest-candidates.json`
+- generates private-learning draft cards in `src/data/autoDraftCases.js`
+- runs `npm test`
+- runs `npm run build`
+- commits generated updates back to GitHub when files change
+
+If this repository is connected to Vercel, that commit triggers a fresh deployment automatically.
+
+Generated cards are intentionally marked as:
+
+- `content_type: auto_generated_source_candidate_draft`
+- `medical_review_status: draft`
+- `content_rights_status: unknown`
+- `usage_scope: private_learning_only`
+- `public_demo_allowed: false`
+
+They are prompts for private learning and review, not medically reviewed source cases.
+
 ## Run Locally
 
 ```powershell

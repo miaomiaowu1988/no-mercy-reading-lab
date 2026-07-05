@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "refresh:sources": "node scripts/refresh_source_candidates.mjs",
+    "generate:draft-cases": "node scripts/generate_draft_cases.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
