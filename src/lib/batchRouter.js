@@ -1,8 +1,24 @@
+import { isDemoEligible, isFormalTrainingEligible, isReviewEligible } from './trainingEligibility.js';
+
 const DEMO_BATCH_SIZE = 10;
 
 export function buildDemoBatch(cases, moduleName) {
   return cases
-    .filter((caseItem) => caseItem.module === moduleName)
+    .filter((caseItem) => caseItem.module === moduleName && isDemoEligible(caseItem))
+    .sort(compareSourceFirst)
+    .slice(0, DEMO_BATCH_SIZE);
+}
+
+export function buildFormalTrainingBatch(cases, moduleName) {
+  return cases
+    .filter((caseItem) => caseItem.module === moduleName && isFormalTrainingEligible(caseItem))
+    .sort(compareSourceFirst)
+    .slice(0, DEMO_BATCH_SIZE);
+}
+
+export function buildReviewBatch(cases, moduleName) {
+  return cases
+    .filter((caseItem) => caseItem.module === moduleName && isReviewEligible(caseItem))
     .sort(compareSourceFirst)
     .slice(0, DEMO_BATCH_SIZE);
 }

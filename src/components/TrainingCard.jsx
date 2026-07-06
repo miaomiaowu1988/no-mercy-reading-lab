@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CaseVisual from './CaseVisual.jsx';
+import { getImageStatus, getImageStatusLabel } from '../lib/imageStatus.js';
 
 export default function TrainingCard({ caseItem, index, total, onCommit, onNext, onReportIssue }) {
   const [selected, setSelected] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [reported, setReported] = useState(false);
+  const [imageStatus, setImageStatus] = useState(() => getImageStatus(caseItem));
   const isCorrect = submitted && selected === caseItem.answer;
+  const batchLabel = imageStatus === 'placeholder' ? 'Synthetic demo batch' : getImageStatusLabel(imageStatus);
+  const showImageNotice = imageStatus !== 'real';
+
+  useEffect(() => {
+    setImageStatus(getImageStatus(caseItem));
+  }, [caseItem]);
 
   function commit() {
     if (!selected) return;
@@ -30,7 +38,7 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
       <header className="case-header">
         <div>
           <strong>{caseItem.module}</strong>
-          <p className="batch-label">Demo batch</p>
+          <p className={`batch-label image-status-${imageStatus}`}>{batchLabel}</p>
         </div>
         <div className="case-progress">
           <span>
@@ -40,9 +48,27 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
         </div>
       </header>
 
-      <CaseVisual image={caseItem.image} visual={caseItem.visual} modality={caseItem.modality} />
+      <CaseVisual
+        caseItem={caseItem}
+        image={caseItem.image}
+        visual={caseItem.visual}
+        modality={caseItem.modality}
+        onImageStatusChange={setImageStatus}
+      />
 
       <section className="case-body">
+        {showImageNotice && (
+          <div className={`image-notice image-status-${imageStatus}`}>
+            <strong>{getImageStatusLabel(imageStatus)}</strong>
+            <span>
+              {imageStatus === 'placeholder'
+                ? 'This case is for workflow demonstration only; image findings are not represented by the visual.'
+                : imageStatus === 'missing'
+                  ? 'This case has no displayable source image and is not eligible for formal training.'
+                  : 'The source image could not be loaded and is not eligible for formal training.'}
+            </span>
+          </div>
+        )}
         {caseItem.content_type === 'real_source_draft' && (
           <div className="source-banner">
             <strong>Source draft</strong>

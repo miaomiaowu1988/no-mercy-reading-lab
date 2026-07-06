@@ -3,6 +3,8 @@ import Dashboard from './components/Dashboard.jsx';
 import TrainingCard from './components/TrainingCard.jsx';
 import { allCases } from './data/allCases.js';
 import { buildDemoBatch, getContinueTrainingRecommendation } from './lib/batchRouter.js';
+import { getImageStatusCounts } from './lib/imageStatus.js';
+import { getCaseLifecycleCounts, isReviewEligible } from './lib/trainingEligibility.js';
 import {
   getDueReviewItems,
   getStats,
@@ -21,6 +23,9 @@ export default function App() {
   const stats = useMemo(() => getStats(progress), [progress]);
   const weakSigns = useMemo(() => getWeakSigns(progress), [progress]);
   const dueReviewItems = useMemo(() => getDueReviewItems(progress), [progress]);
+  const imageStatusCounts = useMemo(() => getImageStatusCounts(allCases), []);
+  const lifecycleCounts = useMemo(() => getCaseLifecycleCounts(allCases), []);
+  const sourceReviewCases = useMemo(() => allCases.filter(isReviewEligible), []);
   const casesById = useMemo(
     () => Object.fromEntries(allCases.map((caseItem) => [caseItem.id, caseItem])),
     []
@@ -115,6 +120,9 @@ export default function App() {
         weakSigns={weakSigns}
         dueReviewItems={dueReviewItems}
         casesById={casesById}
+        imageStatusCounts={imageStatusCounts}
+        lifecycleCounts={lifecycleCounts}
+        sourceReviewCases={sourceReviewCases}
         bossUnlocked={bossUnlocked}
         recommendation={recommendation}
         moduleSummaries={moduleSummaries}

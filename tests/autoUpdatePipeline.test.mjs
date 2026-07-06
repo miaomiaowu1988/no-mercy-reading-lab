@@ -31,7 +31,16 @@ test('generated auto draft cases stay clearly marked as unreviewed private-learn
 
   for (const caseItem of autoDraftCases) {
     assert.equal(caseItem.content_type, 'auto_generated_source_candidate_draft');
-    assert.equal(caseItem.medical_review_status, 'draft');
+    assert.equal(caseItem.case_stage, 'auto_draft');
+    assert.equal(caseItem.source_type, 'public_web_candidate');
+    assert.ok(caseItem.source_name);
+    assert.ok(caseItem.source_url);
+    assert.ok(caseItem.source_case_id);
+    assert.equal(caseItem.image_status, 'missing');
+    assert.equal(caseItem.image_missing, true);
+    assert.equal(caseItem.medical_review_status, 'unreviewed');
+    assert.equal(caseItem.image_text_alignment, 'unknown');
+    assert.equal(caseItem.training_eligibility, 'draft_review_only');
     assert.equal(caseItem.content_rights_status, 'unknown');
     assert.equal(caseItem.usage_scope, 'private_learning_only');
     assert.equal(caseItem.contains_phi, false);

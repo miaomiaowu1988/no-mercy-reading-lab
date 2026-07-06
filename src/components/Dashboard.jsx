@@ -1,6 +1,7 @@
 import ModuleCard from './ModuleCard.jsx';
 import PenaltyReview from './PenaltyReview.jsx';
 import ProgressPanel from './ProgressPanel.jsx';
+import SourceReviewPanel from './SourceReviewPanel.jsx';
 import WeakSignsPanel from './WeakSignsPanel.jsx';
 
 const modules = [
@@ -26,6 +27,9 @@ export default function Dashboard({
   weakSigns,
   dueReviewItems,
   casesById,
+  imageStatusCounts,
+  lifecycleCounts,
+  sourceReviewCases,
   bossUnlocked,
   recommendation,
   moduleSummaries,
@@ -52,6 +56,57 @@ export default function Dashboard({
       </section>
 
       <ProgressPanel stats={stats} />
+      <section className="panel image-status-panel">
+        <h2>Case Pipeline</h2>
+        <p className="muted">Formal training only admits reviewed, matched, real-source images.</p>
+        <div className="image-status-grid">
+          <div>
+            <span>Total cases</span>
+            <strong>{lifecycleCounts?.total || 0}</strong>
+          </div>
+          <div>
+            <span>Synthetic demo</span>
+            <strong>{lifecycleCounts?.syntheticDemo || 0}</strong>
+          </div>
+          <div>
+            <span>Auto draft</span>
+            <strong>{lifecycleCounts?.autoDraft || 0}</strong>
+          </div>
+          <div>
+            <span>Real source draft</span>
+            <strong>{lifecycleCounts?.realSourceDraft || 0}</strong>
+          </div>
+          <div>
+            <span>Reviewed real</span>
+            <strong>{lifecycleCounts?.reviewedRealCase || 0}</strong>
+          </div>
+          <div>
+            <span>Formal eligible</span>
+            <strong>{lifecycleCounts?.formalEligible || 0}</strong>
+          </div>
+          <div>
+            <span>Real images</span>
+            <strong>{imageStatusCounts?.real || 0}</strong>
+          </div>
+          <div>
+            <span>Placeholder images</span>
+            <strong>{imageStatusCounts?.placeholder || 0}</strong>
+          </div>
+          <div>
+            <span>Missing images</span>
+            <strong>{imageStatusCounts?.missing || 0}</strong>
+          </div>
+          <div>
+            <span>Failed load</span>
+            <strong>{imageStatusCounts?.failed_load || 0}</strong>
+          </div>
+        </div>
+        <p className="maturity-copy">
+          Formal eligible / Total: {lifecycleCounts?.formalEligible || 0}/{lifecycleCounts?.total || 0}. Reviewed real / Real images:{' '}
+          {lifecycleCounts?.reviewedRealCase || 0}/{imageStatusCounts?.real || 0}.
+        </p>
+      </section>
+      <SourceReviewPanel cases={sourceReviewCases || []} />
       <WeakSignsPanel weakSigns={weakSigns} />
       <PenaltyReview dueItems={dueReviewItems} casesById={casesById} />
 

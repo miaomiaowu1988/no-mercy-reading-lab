@@ -19,6 +19,17 @@ test('source cases are included in the training case collection', () => {
 test('source cases carry private-learning and draft-review metadata', () => {
   for (const sourceCase of sourceCases) {
     assert.equal(sourceCase.content_type, 'real_source_draft');
+    assert.equal(sourceCase.case_stage, 'real_source_draft');
+    assert.equal(sourceCase.source_type, 'public_web');
+    assert.equal(sourceCase.source_name, sourceCase.source.account);
+    assert.equal(sourceCase.source_url, sourceCase.source.url);
+    assert.ok(sourceCase.source_case_id);
+    assert.equal(sourceCase.image_status, 'real');
+    assert.equal(sourceCase.image_missing, false);
+    assert.equal(sourceCase.medical_review_status, 'unreviewed');
+    assert.equal(sourceCase.image_text_alignment, 'unknown');
+    assert.equal(sourceCase.training_eligibility, 'source_review_only');
+    assert.equal(sourceCase.public_demo_allowed, false);
     assert.equal(sourceCase.verification_status, 'ai_generated_draft_not_medically_reviewed');
     assert.equal(sourceCase.usage_scope, 'private_learning_only');
     assert.match(sourceCase.source.url, /^https:\/\//);

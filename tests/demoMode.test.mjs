@@ -5,21 +5,27 @@ import { allCases } from '../src/data/allCases.js';
 import { buildDemoBatch, getContinueTrainingRecommendation } from '../src/lib/batchRouter.js';
 import { createInitialProgress, recordAnswer, reportCaseIssue } from '../src/lib/progress.js';
 
-test('buildDemoBatch returns at most 10 module cases and keeps source drafts first', () => {
+test('buildDemoBatch returns at most 10 public demo cases and excludes review drafts', () => {
   const dailyCtBatch = buildDemoBatch(allCases, 'Daily CT');
   const ecgBatch = buildDemoBatch(allCases, 'ECG Flashcards');
   const hardCaseBatch = buildDemoBatch(allCases, 'Hard Cases');
 
   assert.equal(dailyCtBatch.length, 10);
-  assert.equal(dailyCtBatch[0].id, 'source-pulmonary-imaging-nodule-001');
-  assert.equal(dailyCtBatch[1].id, 'source-dxy-respiratory-influenza-ct-001');
+  assert.equal(dailyCtBatch[0].id, 'ct-001');
+  assert.equal(dailyCtBatch[1].id, 'ct-002');
 
   assert.equal(ecgBatch.length, 10);
-  assert.equal(ecgBatch[0].id, 'source-chen-ecg-001');
-  assert.equal(ecgBatch[1].id, 'source-chen-ecg-002');
+  assert.equal(ecgBatch[0].id, 'ecg-001');
+  assert.equal(ecgBatch[1].id, 'ecg-002');
 
   assert.equal(hardCaseBatch.length, 10);
   assert.ok(hardCaseBatch.every((caseItem) => caseItem.module === 'Hard Cases'));
+  assert.ok(
+    [...dailyCtBatch, ...ecgBatch, ...hardCaseBatch].every(
+      (caseItem) => caseItem.content_type !== 'auto_generated_source_candidate_draft'
+        && caseItem.content_type !== 'real_source_draft'
+    )
+  );
 });
 
 test('getContinueTrainingRecommendation resumes the active module when a demo batch is in progress', () => {
