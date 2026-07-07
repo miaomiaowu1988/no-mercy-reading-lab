@@ -10,18 +10,18 @@ test('buildDemoBatch only returns real-image practice cases and excludes synthet
   const ecgBatch = buildDemoBatch(allCases, 'ECG Flashcards');
   const hardCaseBatch = buildDemoBatch(allCases, 'Hard Cases');
 
-  assert.equal(dailyCtBatch.length, 5);
+  assert.equal(dailyCtBatch.length, 10);
   assert.equal(dailyCtBatch[0].content_type, 'real_source_draft');
   assert.equal(dailyCtBatch[0].image_status, 'real');
   assert.equal(dailyCtBatch[1].content_type, 'real_source_draft');
   assert.ok(dailyCtBatch.every((caseItem) => caseItem.image_status === 'real'));
 
-  assert.equal(ecgBatch.length, 5);
+  assert.equal(ecgBatch.length, 10);
   assert.equal(ecgBatch[0].content_type, 'real_source_draft');
   assert.equal(ecgBatch[0].image_status, 'real');
   assert.ok(ecgBatch.every((caseItem) => caseItem.image_status === 'real'));
 
-  assert.equal(hardCaseBatch.length, 2);
+  assert.equal(hardCaseBatch.length, 10);
   assert.ok(hardCaseBatch.every((caseItem) => caseItem.module === 'Hard Cases'));
   assert.equal(hardCaseBatch[0].content_type, 'real_source_draft');
   assert.ok(

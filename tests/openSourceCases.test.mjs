@@ -6,7 +6,7 @@ import { openSourceCases } from '../src/data/openSourceCases.js';
 import { isFormalTrainingEligible, isReviewEligible } from '../src/lib/trainingEligibility.js';
 
 test('open source seed cases add remote real images without bypassing review gates', () => {
-  assert.ok(openSourceCases.length >= 8);
+  assert.ok(openSourceCases.length >= 40);
 
   for (const caseItem of openSourceCases) {
     assert.equal(caseItem.content_type, 'real_source_draft');
