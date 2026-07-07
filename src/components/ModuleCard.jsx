@@ -10,8 +10,8 @@ export default function ModuleCard({
 }) {
   const statusText =
     completedCount > 0 && totalCount > 0
-      ? `${completedCount}/${totalCount} answered in current demo`
-      : `${demoCount} cases available in demo mode`;
+      ? `${completedCount}/${totalCount} answered in current real-image set`
+      : `${demoCount} real-image cases available`;
 
   return (
     <button className={`module-card ${locked ? 'locked' : ''}`} onClick={onClick} disabled={locked} type="button">

@@ -62,6 +62,36 @@ export default function Dashboard({
         </div>
       </section>
 
+      <section className="module-grid" aria-label="Training modules">
+        {modules.map((module) => {
+          const summary = moduleSummaries.find((item) => item.title === module.title);
+          return (
+            <ModuleCard
+              key={module.title}
+              {...module}
+              demoCount={summary?.demoCount || 0}
+              completedCount={summary?.completedCount || 0}
+              totalCount={summary?.totalCount || summary?.demoCount || 0}
+              onClick={() => onSelectModule(module.title)}
+            />
+          );
+        })}
+        <ModuleCard
+          title="Boss Case"
+          meta="Locked challenge"
+          description={
+            bossUnlocked
+              ? 'Multi-step clinical reasoning challenge unlocked.'
+              : 'Complete 12 cases with accuracy >=70% or reach a 5-case streak.'
+          }
+          demoCount={4}
+          completedCount={0}
+          totalCount={4}
+          locked={!bossUnlocked}
+          onClick={() => onSelectModule('Boss Case')}
+        />
+      </section>
+
       <ProgressPanel stats={stats} />
       <section className="panel image-status-panel">
         <h2>Case Pipeline</h2>
@@ -116,36 +146,6 @@ export default function Dashboard({
       <SourceReviewPanel cases={sourceReviewCases || []} />
       <WeakSignsPanel weakSigns={weakSigns} />
       <PenaltyReview dueItems={dueReviewItems} casesById={casesById} />
-
-      <section className="module-grid" aria-label="Training modules">
-        {modules.map((module) => {
-          const summary = moduleSummaries.find((item) => item.title === module.title);
-          return (
-            <ModuleCard
-              key={module.title}
-              {...module}
-              demoCount={summary?.demoCount || 0}
-              completedCount={summary?.completedCount || 0}
-              totalCount={summary?.totalCount || summary?.demoCount || 0}
-              onClick={() => onSelectModule(module.title)}
-            />
-          );
-        })}
-        <ModuleCard
-          title="Boss Case"
-          meta="Locked challenge"
-          description={
-            bossUnlocked
-              ? 'Multi-step clinical reasoning challenge unlocked.'
-              : 'Complete 12 cases with accuracy >=70% or reach a 5-case streak.'
-          }
-          demoCount={4}
-          completedCount={0}
-          totalCount={4}
-          locked={!bossUnlocked}
-          onClick={() => onSelectModule('Boss Case')}
-        />
-      </section>
     </div>
   );
 }

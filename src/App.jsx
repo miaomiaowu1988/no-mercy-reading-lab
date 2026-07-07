@@ -88,7 +88,7 @@ export default function App() {
   function handleReportIssue(caseItem) {
     const nextProgress = reportCaseIssue(progress, caseItem, {
       type: 'other',
-      note: 'Flagged from demo mode card.'
+      note: 'Flagged from real-image practice card.'
     });
     setProgress(nextProgress);
     saveProgress(nextProgress);
