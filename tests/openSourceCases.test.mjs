@@ -33,3 +33,15 @@ test('open source seed cases are included in the global case pool', () => {
     assert.ok(allCaseIds.has(caseItem.id), `${caseItem.id} is missing from allCases`);
   }
 });
+
+test('open source real-image cases include clinical reasoning and differential teaching', () => {
+  for (const caseItem of openSourceCases) {
+    assert.ok(caseItem.history.length >= 180, `${caseItem.id} needs richer clinical history`);
+    assert.match(caseItem.history, /Clinical scenario:/, `${caseItem.id} history needs a clinical scenario`);
+    assert.equal(caseItem.question, 'What is the most likely imaging interpretation?');
+    assert.ok(caseItem.reasoning_steps.length >= 4, `${caseItem.id} needs at least four reasoning steps`);
+    assert.ok(caseItem.differential.length >= 4, `${caseItem.id} needs at least four differential items`);
+    assert.match(caseItem.explanation, /Image basics:/, `${caseItem.id} explanation needs image basics`);
+    assert.match(caseItem.explanation, /Differential:/, `${caseItem.id} explanation needs differential teaching`);
+  }
+});
