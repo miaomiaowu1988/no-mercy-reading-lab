@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Dashboard from './components/Dashboard.jsx';
 import TrainingCard from './components/TrainingCard.jsx';
 import { allCases } from './data/allCases.js';
@@ -20,6 +20,7 @@ export default function App() {
   const [selectedModule, setSelectedModule] = useState(null);
   const [cardIndex, setCardIndex] = useState(0);
   const [progress, setProgress] = useState(() => loadProgress());
+  const [theme, setTheme] = useState(() => loadTheme());
   const stats = useMemo(() => getStats(progress), [progress]);
   const weakSigns = useMemo(() => getWeakSigns(progress), [progress]);
   const dueReviewItems = useMemo(() => getDueReviewItems(progress), [progress]);
@@ -55,9 +56,14 @@ export default function App() {
     return buildDemoBatch(allCases, selectedModule);
   }, [selectedModule]);
   const activeBatchId = useMemo(
-    () => (selectedModule ? `${selectedModule.toLowerCase().replace(/\s+/g, '-')}-demo` : null),
+    () => (selectedModule ? `${selectedModule.toLowerCase().replace(/\s+/g, '-')}-real-image` : null),
     [selectedModule]
   );
+
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+    window.localStorage?.setItem('no-mercy-theme', theme);
+  }, [theme]);
 
   function selectModule(moduleName) {
     setSelectedModule(moduleName);
@@ -92,13 +98,22 @@ export default function App() {
     setCardIndex((current) => (current + 1) % moduleCases.length);
   }
 
+  function toggleTheme() {
+    setTheme((currentTheme) => (currentTheme === 'night' ? 'day' : 'night'));
+  }
+
   if (selectedModule) {
     const currentCase = moduleCases[cardIndex];
     return (
       <main className="app-shell trainer-layout">
-        <button className="back-button" onClick={() => setSelectedModule(null)} type="button">
-          Back to dashboard
-        </button>
+        <div className="top-actions">
+          <button className="back-button" onClick={() => setSelectedModule(null)} type="button">
+            Back to dashboard
+          </button>
+          <button className="theme-toggle" onClick={toggleTheme} type="button">
+            {theme === 'night' ? 'Day mode' : 'Night mode'}
+          </button>
+        </div>
         {currentCase && (
           <TrainingCard
             caseItem={currentCase}
@@ -126,9 +141,16 @@ export default function App() {
         bossUnlocked={bossUnlocked}
         recommendation={recommendation}
         moduleSummaries={moduleSummaries}
+        theme={theme}
+        onToggleTheme={toggleTheme}
         onContinueTraining={continueTraining}
         onSelectModule={selectModule}
       />
     </main>
   );
+}
+
+function loadTheme() {
+  if (typeof window === 'undefined') return 'night';
+  return window.localStorage?.getItem('no-mercy-theme') === 'day' ? 'day' : 'night';
 }

@@ -8,7 +8,12 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
   const [reported, setReported] = useState(false);
   const [imageStatus, setImageStatus] = useState(() => getImageStatus(caseItem));
   const isCorrect = submitted && selected === caseItem.answer;
-  const batchLabel = imageStatus === 'placeholder' ? 'Synthetic demo batch' : getImageStatusLabel(imageStatus);
+  const batchLabel =
+    caseItem.content_type === 'real_source_draft'
+      ? 'Real-image source review batch'
+      : imageStatus === 'placeholder'
+        ? 'Synthetic demo batch'
+        : getImageStatusLabel(imageStatus);
   const showImageNotice = imageStatus !== 'real';
 
   useEffect(() => {

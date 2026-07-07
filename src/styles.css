@@ -16,6 +16,12 @@ body {
   background: linear-gradient(180deg, #151919 0%, #0e1111 52%, #080a0a 100%);
 }
 
+body[data-theme='day'] {
+  color-scheme: light;
+  background: #f7faf9;
+  color: #16201f;
+}
+
 button {
   font: inherit;
 }
@@ -106,6 +112,13 @@ h1 {
   display: grid;
   gap: 12px;
   margin-top: 20px;
+}
+
+.hero-button-row,
+.top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .continue-action {
@@ -327,7 +340,8 @@ h1 {
 
 .back-button,
 .primary-action,
-.secondary-action {
+.secondary-action,
+.theme-toggle {
   border: 0;
   border-radius: 8px;
   background: #2fe6b8;
@@ -340,12 +354,21 @@ h1 {
 .back-button {
   background: rgba(255, 255, 255, 0.08);
   color: #edf7f5;
-  margin-bottom: 16px;
 }
 
 .secondary-action {
   background: rgba(255, 255, 255, 0.08);
   color: #edf7f5;
+}
+
+.theme-toggle {
+  border: 1px solid rgba(47, 230, 184, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #edf7f5;
+}
+
+.top-actions {
+  margin-bottom: 16px;
 }
 
 .training-card {
@@ -633,6 +656,102 @@ h1 {
   flex-wrap: wrap;
   gap: 8px;
   margin: 12px 0;
+}
+
+body[data-theme='day'] .hero-panel,
+body[data-theme='day'] .module-card {
+  border-color: #d8e3e0;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(22, 32, 31, 0.06);
+}
+
+body[data-theme='day'] .panel,
+body[data-theme='day'] .training-card {
+  border-color: #d8e3e0;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(22, 32, 31, 0.05);
+}
+
+body[data-theme='day'] h1,
+body[data-theme='day'] .case-header strong,
+body[data-theme='day'] .module-card strong,
+body[data-theme='day'] .review-case dd {
+  color: #16201f;
+}
+
+body[data-theme='day'] .subtitle,
+body[data-theme='day'] .recommendation-copy,
+body[data-theme='day'] .weak-signs li,
+body[data-theme='day'] .review-list li {
+  color: #374947;
+}
+
+body[data-theme='day'] .intro,
+body[data-theme='day'] .stats-grid span,
+body[data-theme='day'] .muted,
+body[data-theme='day'] .module-status,
+body[data-theme='day'] .image-status-grid span,
+body[data-theme='day'] .review-case p,
+body[data-theme='day'] .review-case dt,
+body[data-theme='day'] .case-meta,
+body[data-theme='day'] .batch-label,
+body[data-theme='day'] .case-progress small {
+  color: #647976;
+}
+
+body[data-theme='day'] .stats-grid div,
+body[data-theme='day'] .image-status-grid div,
+body[data-theme='day'] .review-case,
+body[data-theme='day'] .reveal-panel,
+body[data-theme='day'] .option {
+  border-color: #d8e3e0;
+  background: #f6f9f8;
+}
+
+body[data-theme='day'] .back-button,
+body[data-theme='day'] .secondary-action,
+body[data-theme='day'] .theme-toggle {
+  border: 1px solid #d8e3e0;
+  background: #eef4f2;
+  color: #16201f;
+}
+
+body[data-theme='day'] .case-header {
+  border-bottom-color: #d8e3e0;
+  color: #647976;
+}
+
+body[data-theme='day'] .case-visual {
+  color: #07876d;
+  background:
+    linear-gradient(rgba(7, 135, 109, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 135, 109, 0.08) 1px, transparent 1px),
+    #eef4f2;
+  background-size: 28px 28px;
+}
+
+body[data-theme='day'] .source-banner,
+body[data-theme='day'] .image-notice {
+  background: #fff7e8;
+  color: #5d4314;
+}
+
+body[data-theme='day'] .source-banner span,
+body[data-theme='day'] .source-note,
+body[data-theme='day'] .image-notice span,
+body[data-theme='day'] .maturity-copy {
+  color: #6f613f;
+}
+
+body[data-theme='day'] .source-note a {
+  color: #087b67;
+}
+
+body[data-theme='day'] .visual-toolbar span,
+body[data-theme='day'] .chip-row span {
+  border-color: rgba(8, 123, 103, 0.28);
+  background: rgba(8, 123, 103, 0.08);
+  color: #075f51;
 }
 
 @media (max-width: 820px) {

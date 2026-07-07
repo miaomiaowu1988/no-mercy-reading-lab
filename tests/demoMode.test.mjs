@@ -5,30 +5,34 @@ import { allCases } from '../src/data/allCases.js';
 import { buildDemoBatch, getContinueTrainingRecommendation } from '../src/lib/batchRouter.js';
 import { createInitialProgress, recordAnswer, reportCaseIssue } from '../src/lib/progress.js';
 
-test('buildDemoBatch returns at most 10 public demo cases and excludes review drafts', () => {
+test('buildDemoBatch only returns real-image practice cases and excludes synthetic placeholders', () => {
   const dailyCtBatch = buildDemoBatch(allCases, 'Daily CT');
   const ecgBatch = buildDemoBatch(allCases, 'ECG Flashcards');
   const hardCaseBatch = buildDemoBatch(allCases, 'Hard Cases');
 
-  assert.equal(dailyCtBatch.length, 10);
-  assert.equal(dailyCtBatch[0].id, 'ct-001');
-  assert.equal(dailyCtBatch[1].id, 'ct-002');
+  assert.equal(dailyCtBatch.length, 5);
+  assert.equal(dailyCtBatch[0].content_type, 'real_source_draft');
+  assert.equal(dailyCtBatch[0].image_status, 'real');
+  assert.equal(dailyCtBatch[1].content_type, 'real_source_draft');
+  assert.ok(dailyCtBatch.every((caseItem) => caseItem.image_status === 'real'));
 
-  assert.equal(ecgBatch.length, 10);
-  assert.equal(ecgBatch[0].id, 'ecg-001');
-  assert.equal(ecgBatch[1].id, 'ecg-002');
+  assert.equal(ecgBatch.length, 5);
+  assert.equal(ecgBatch[0].content_type, 'real_source_draft');
+  assert.equal(ecgBatch[0].image_status, 'real');
+  assert.ok(ecgBatch.every((caseItem) => caseItem.image_status === 'real'));
 
-  assert.equal(hardCaseBatch.length, 10);
+  assert.equal(hardCaseBatch.length, 2);
   assert.ok(hardCaseBatch.every((caseItem) => caseItem.module === 'Hard Cases'));
+  assert.equal(hardCaseBatch[0].content_type, 'real_source_draft');
   assert.ok(
     [...dailyCtBatch, ...ecgBatch, ...hardCaseBatch].every(
       (caseItem) => caseItem.content_type !== 'auto_generated_source_candidate_draft'
-        && caseItem.content_type !== 'real_source_draft'
+        && caseItem.content_type !== 'synthetic_demo'
     )
   );
 });
 
-test('getContinueTrainingRecommendation resumes the active module when a demo batch is in progress', () => {
+test('getContinueTrainingRecommendation resumes the active module when a real-image set is in progress', () => {
   const progress = {
     ...createInitialProgress(),
     activeBatch: {
@@ -43,6 +47,7 @@ test('getContinueTrainingRecommendation resumes the active module when a demo ba
 
   assert.equal(recommendation.module, 'Daily CT');
   assert.match(recommendation.reason, /3\/10/i);
+  assert.match(recommendation.reason, /real-image practice set/i);
 });
 
 test('recordAnswer stores active batch progress and streak bonus XP for demo mode', () => {

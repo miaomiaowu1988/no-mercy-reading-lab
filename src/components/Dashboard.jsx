@@ -33,6 +33,8 @@ export default function Dashboard({
   bossUnlocked,
   recommendation,
   moduleSummaries,
+  theme,
+  onToggleTheme,
   onContinueTraining,
   onSelectModule
 }) {
@@ -46,11 +48,16 @@ export default function Dashboard({
           Respiratory-focused diagnostic training for chest CT, hard cases, and respiratory-emergency ECG recognition.
         </p>
         <div className="hero-actions">
-          <button className="primary-action continue-action" onClick={onContinueTraining} type="button">
-            Continue Training
-          </button>
+          <div className="hero-button-row">
+            <button className="primary-action continue-action" onClick={onContinueTraining} type="button">
+              Continue Training
+            </button>
+            <button className="theme-toggle" onClick={onToggleTheme} type="button">
+              {theme === 'night' ? 'Day mode' : 'Night mode'}
+            </button>
+          </div>
           <p className="recommendation-copy">
-            {recommendation?.module ? `Today's recommendation: ${recommendation.module}. ${recommendation.reason}` : 'Pick any module to start a demo batch.'}
+            {recommendation?.module ? `Today's recommendation: ${recommendation.module}. ${recommendation.reason}` : 'Pick any module with real images to start.'}
           </p>
         </div>
       </section>

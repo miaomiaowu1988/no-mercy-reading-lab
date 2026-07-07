@@ -91,7 +91,7 @@ test('demo, review, and formal batch builders route cases by mode', () => {
   const cases = [syntheticDemo, autoDraft, realSourceDraft, reviewedRealCase];
 
   assert.deepEqual(buildDemoBatch(cases, 'Daily CT').map((caseItem) => caseItem.id), [
-    'synthetic',
+    'source-draft',
     'reviewed-real'
   ]);
   assert.deepEqual(buildReviewBatch(cases, 'Daily CT').map((caseItem) => caseItem.id), [
