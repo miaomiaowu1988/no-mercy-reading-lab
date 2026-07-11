@@ -586,7 +586,7 @@ function createOpenSourceCase(caseItem) {
       src: imageUrl,
       alt: `${caseItem.title} image from Wikimedia Commons`
     },
-    image_credit: `Remote image from Wikimedia Commons file page: ${caseItem.fileName}. License metadata should be reviewed before formal training.`,
+    image_credit: `Wikimedia Commons file: ${caseItem.fileName}.`,
     visual: caseItem.module === 'ECG Flashcards' ? 'open-source-ecg' : 'open-source-ct',
     question_type: 'single_choice',
     question: 'What is the most likely imaging interpretation?',
@@ -599,7 +599,7 @@ function createOpenSourceCase(caseItem) {
     differential: buildDifferential(caseItem.answer, teachingProfile),
     common_trap: teachingProfile.trap,
     must_not_miss: teachingProfile.mustNotMiss,
-    pitfall: 'Confusing a real source image with a reviewed teaching diagnosis; confirm the finding and the clinical fit before promotion.',
+    pitfall: 'Choosing the label before checking whether the image, symptom tempo, and differential all fit.',
     source: {
       type: 'wikimedia_commons_file',
       account: 'Wikimedia Commons',
@@ -619,9 +619,9 @@ function createOpenSourceCase(caseItem) {
 function buildClinicalHistory(caseItem, profile) {
   return [
     `Clinical scenario: ${profile.stem}`,
-    `Key reasoning clues: the source image is being reviewed for ${caseItem.signs.join(', ')}.`,
+    `Key clues: look for ${caseItem.signs.join(', ')}.`,
     `Use the clinical context to decide whether ${caseItem.answer} fits better than ${profile.mimics.slice(0, 3).join(', ')}.`,
-    `Source-image note: ${caseItem.history}`
+    caseItem.history
   ].join(' ');
 }
 
@@ -647,8 +647,7 @@ function buildExplanation(caseItem, profile) {
   return [
     `Image basics: ${profile.imageBasics}`,
     `Why this answer fits: ${caseItem.answer} is favored when ${caseItem.signs.join(', ')} line up with the clinical scenario rather than appearing as an isolated label.`,
-    `Differential: ${profile.differentialTeaching}`,
-    'Review status: this card uses a real remote source image, but it remains source-review-only until image-text alignment, license metadata, and medical accuracy are checked.'
+    `Differential: ${profile.differentialTeaching}`
   ].join(' ');
 }
 
@@ -756,7 +755,7 @@ function getTeachingProfile(caseItem) {
   }
 
   return {
-    stem: 'A patient has respiratory symptoms and a real source image that needs structured review. The goal is to integrate pattern, distribution, acuity, and clinical context before selecting the label.',
+    stem: 'A patient has respiratory symptoms and a chest image that needs structured interpretation. The goal is to integrate pattern, distribution, acuity, and clinical context before selecting the label.',
     tempo: 'match the imaging pattern to symptom tempo and severity before choosing a diagnosis.',
     imageBasics: `For this pattern, first identify ${caseItem.signs[0]}, then check distribution, associated findings, and whether the clinical context supports the label.`,
     mimics: ['Infection', 'Pulmonary edema', 'Malignancy mimic', 'Chronic inflammatory disease'],

@@ -4,7 +4,7 @@ import TrainingCard from './components/TrainingCard.jsx';
 import { allCases } from './data/allCases.js';
 import { buildDemoBatch, getContinueTrainingRecommendation } from './lib/batchRouter.js';
 import { getImageStatusCounts } from './lib/imageStatus.js';
-import { getCaseLifecycleCounts, isReviewEligible } from './lib/trainingEligibility.js';
+import { getCaseLifecycleCounts } from './lib/trainingEligibility.js';
 import {
   getDueReviewItems,
   getStats,
@@ -26,7 +26,6 @@ export default function App() {
   const dueReviewItems = useMemo(() => getDueReviewItems(progress), [progress]);
   const imageStatusCounts = useMemo(() => getImageStatusCounts(allCases), []);
   const lifecycleCounts = useMemo(() => getCaseLifecycleCounts(allCases), []);
-  const sourceReviewCases = useMemo(() => allCases.filter(isReviewEligible), []);
   const casesById = useMemo(
     () => Object.fromEntries(allCases.map((caseItem) => [caseItem.id, caseItem])),
     []
@@ -137,7 +136,6 @@ export default function App() {
         casesById={casesById}
         imageStatusCounts={imageStatusCounts}
         lifecycleCounts={lifecycleCounts}
-        sourceReviewCases={sourceReviewCases}
         bossUnlocked={bossUnlocked}
         recommendation={recommendation}
         moduleSummaries={moduleSummaries}

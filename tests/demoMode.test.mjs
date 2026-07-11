@@ -32,6 +32,43 @@ test('buildDemoBatch only returns real-image practice cases and excludes synthet
   );
 });
 
+test('real-image practice cards avoid defensive source-review copy', () => {
+  const bannedCopy = /AI-generated|not medically reviewed|private learning|source-review-only|license metadata|Review status|formal training|Do not promote/i;
+  const practiceCards = [
+    ...buildDemoBatch(allCases, 'Daily CT'),
+    ...buildDemoBatch(allCases, 'Hard Cases'),
+    ...buildDemoBatch(allCases, 'ECG Flashcards')
+  ];
+
+  for (const caseItem of practiceCards) {
+    const visibleCopy = [
+      caseItem.title,
+      caseItem.history,
+      caseItem.question,
+      caseItem.explanation,
+      caseItem.common_trap,
+      caseItem.must_not_miss,
+      ...(caseItem.reasoning_steps || [])
+    ].join('\n');
+
+    assert.doesNotMatch(visibleCopy, bannedCopy, `${caseItem.id} contains defensive copy`);
+  }
+});
+
+test('real-image practice cards include basic image teaching and differential', () => {
+  const practiceCards = [
+    ...buildDemoBatch(allCases, 'Daily CT'),
+    ...buildDemoBatch(allCases, 'Hard Cases'),
+    ...buildDemoBatch(allCases, 'ECG Flashcards')
+  ];
+
+  for (const caseItem of practiceCards) {
+    assert.match(caseItem.explanation, /Image basics:/, `${caseItem.id} needs image basics`);
+    assert.match(caseItem.explanation, /Differential:/, `${caseItem.id} needs differential teaching`);
+    assert.ok(caseItem.differential.length >= 4, `${caseItem.id} needs richer differential`);
+  }
+});
+
 test('getContinueTrainingRecommendation resumes the active module when a real-image set is in progress', () => {
   const progress = {
     ...createInitialProgress(),

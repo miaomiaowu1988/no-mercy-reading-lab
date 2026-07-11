@@ -23,13 +23,13 @@ export const sourceCases = [
     image_text_alignment: 'unknown',
     training_eligibility: 'source_review_only',
     public_demo_allowed: false,
-    history: 'Sinus rhythm around 79 bpm. V1 shows an M-shaped QRS complex with QRS duration about 0.132 s. The question is whether anterior ST-T changes can be interpreted as secondary to complete right bundle branch block.',
+    history: 'Clinical scenario: A patient with dyspnea has a sinus rhythm around 79 bpm and a widened QRS. V1 shows an M-shaped QRS complex with QRS duration about 0.132 s. The key question is whether the anterior ST-T changes fit secondary repolarization from complete RBBB or suggest another acute process.',
     image: {
       type: 'local_source_asset',
       src: '/assets/source-cases/chen-rbbb-stt-20260701.jpg',
       alt: 'ECG image from WeChat article about right bundle branch block and ST-T changes'
     },
-    image_credit: 'Image cached locally from the linked WeChat article for private learning only.',
+    image_credit: 'Image from the linked WeChat article.',
     visual: 'wechat-ecg',
     question_type: 'single_choice',
     question: 'What is the best interpretation of the ECG pattern described in this source article?',
@@ -47,7 +47,7 @@ export const sourceCases = [
       'Check QRS duration and morphology: QRS >= 0.12 s with an M-shaped pattern in right precordial leads supports complete RBBB.',
       'Interpret V1-V3 ST-T changes cautiously because mild ST depression and T-wave inversion can be secondary repolarization changes in RBBB.'
     ],
-    explanation: 'The article emphasizes that complete RBBB can produce secondary ST-T changes, especially mild ST depression and T-wave inversion in V1-V2 or nearby anterior leads. This does not automatically exclude ischemia; symptoms, history, comparison ECGs, and dynamic change still matter.',
+    explanation: 'Image basics: Complete RBBB usually has QRS duration at least 0.12 s, rsR or M-shaped morphology in V1-V3, and broad terminal S waves in lateral leads; anterior ST depression or T-wave inversion can be secondary repolarization. Why this answer fits: the wide QRS and M-shaped right-precordial morphology make complete RBBB the anchor finding. Differential: anterior ischemia is more likely when ST-T changes are dynamic, territorial, or symptom-linked; right ventricular strain needs PE or pulmonary hypertension context; lead placement artifact should be considered when V1-V2 morphology is unexpected.',
     differential: ['Complete RBBB', 'Anterior ischemia', 'Right ventricular strain', 'Lead placement artifact'],
     common_trap: 'Treating all anterior T-wave inversion in RBBB as harmless secondary change.',
     must_not_miss: 'If symptoms or dynamic ECG changes suggest ischemia, do not dismiss ST-T abnormality solely because RBBB is present.',
@@ -87,13 +87,13 @@ export const sourceCases = [
     image_text_alignment: 'unknown',
     training_eligibility: 'source_review_only',
     public_demo_allowed: false,
-    history: 'Post-arrest setting with ongoing external chest compressions. The ECG tracing may show organized-looking complexes caused by compression artifact rather than spontaneous effective cardiac electrical activity.',
+    history: 'Clinical scenario: During resuscitation after cardiac arrest, the monitor shows organized-looking periodic ECG activity while external chest compressions are ongoing. The task is to decide whether the tracing represents a true perfusing rhythm or compression-generated artifact.',
     image: {
       type: 'local_source_asset',
       src: '/assets/source-cases/chen-cpr-artifact-20260702.png',
       alt: 'ECG image from WeChat article about chest compression-generated ECG pattern'
     },
-    image_credit: 'Image cached locally from the linked WeChat article for private learning only.',
+    image_credit: 'Image from the linked WeChat article.',
     visual: 'wechat-ecg',
     question_type: 'single_choice',
     question: 'What is the key interpretation trap in this post-arrest ECG context?',
@@ -111,7 +111,7 @@ export const sourceCases = [
       'Do not judge return of spontaneous circulation from the monitor tracing alone.',
       'Correlate rhythm with pulse check, compression pauses, waveform changes, and clinical response.'
     ],
-    explanation: 'The article title and images frame an ECG pattern formed during chest compressions after cardiac arrest. The teaching point is that monitor rhythm must be interpreted with the resuscitation context; compression artifact can appear organized and should not be mistaken for stable spontaneous rhythm.',
+    explanation: 'Image basics: Chest compressions can generate rhythmic ECG artifact that looks organized, especially when the waveform timing follows compression cycles rather than intrinsic cardiac conduction. Why this answer fits: the post-arrest setting and ongoing compressions make artifact the first interpretation trap. Differential: pulseless electrical activity may show organized electrical complexes without a pulse; ventricular rhythm can appear regular but should persist during pauses; return of spontaneous circulation requires pulse, perfusion, and rhythm correlation.',
     differential: ['Compression artifact', 'Pulseless electrical activity', 'Ventricular rhythm', 'Return of spontaneous circulation'],
     common_trap: 'Mistaking compression-generated waveform for a perfusing rhythm.',
     must_not_miss: 'During arrest, rhythm interpretation must be linked to pulse checks and compression pauses.',
@@ -151,13 +151,13 @@ export const sourceCases = [
     image_text_alignment: 'unknown',
     training_eligibility: 'source_review_only',
     public_demo_allowed: false,
-    history: 'A woman had a right upper lung nodule found on routine CT screening in 2015. It was about 5 mm, mixed density, sharply marginated, and initially raised concern for early lung cancer. Follow-up showed no meaningful change in size, morphology, or density over years.',
+    history: 'Clinical scenario: A woman has a small right upper lung nodule found on routine CT screening. It measures about 5 mm, has mixed density, and initially looks concerning on an axial slice. Several years of follow-up show no meaningful change in size, morphology, or density, so reconstruction and prior-image comparison become the key reasoning tools.',
     image: {
       type: 'local_source_asset',
       src: '/assets/source-cases/pulmonary-imaging-nodule-20201007.jpg',
       alt: 'Chest CT image from a pulmonary nodule case shared by Pulmonary Imaging Alliance'
     },
-    image_credit: 'Image cached locally from the linked public article mirror for private learning only; watermark preserved.',
+    image_credit: 'Image from the linked public article mirror; watermark preserved.',
     visual: 'source-chest-ct',
     question_type: 'single_choice',
     question: 'For this small pulmonary nodule case, which next step best reduces over-calling malignancy?',
@@ -175,7 +175,7 @@ export const sourceCases = [
       'Check prior examinations: long-term stability substantially lowers malignant probability.',
       'Use thin-slice target reconstruction and multiplanar/3D views to decide whether the apparent nodule is actually a linear or plaque-like inflammatory/fibrotic focus.'
     ],
-    explanation: 'The source case describes a small mixed-density pulmonary nodule that looked concerning on axial CT but stayed stable over years. Thin-slice target reconstruction plus coronal MPR, MIP, and VR showed a smoother linear/flat morphology, making an inflammatory/fibrotic lesion more likely than invasive malignancy. This is a good training case for not making a management decision from one axial slice alone.',
+    explanation: 'Image basics: Small pulmonary nodules should be assessed by size, density, margin, growth, solid component, relationship to pleura or vessels, and morphology on thin-slice MPR/MIP/VR reconstructions. Why this answer fits: the nodule looked suspicious on one axial view, but long-term stability and reconstruction showing smoother linear or flat morphology favor inflammatory or fibrotic change. Differential: adenocarcinoma-spectrum lesions tend to persist and may slowly grow or develop a solid component; granulomas may calcify; focal scar is often linear and stable; transient inflammatory nodules usually change or resolve.',
     differential: ['Inflammatory nodule', 'Focal fibrosis', 'Atypical adenomatous hyperplasia', 'Minimally invasive adenocarcinoma'],
     common_trap: 'Equating irregular or mixed-density appearance on one image with definite cancer.',
     must_not_miss: 'Persistent growth, increasing solid component, spiculation, pleural retraction, or a high-risk clinical context should prompt escalation.',
@@ -215,13 +215,13 @@ export const sourceCases = [
     image_text_alignment: 'unknown',
     training_eligibility: 'source_review_only',
     public_demo_allowed: false,
-    history: 'A 58-year-old man presented with fever, cough, sore throat, and generalized aches for 3 days. The source case asks the reader to infer the likely microbial category and pathogen from the chest CT pattern.',
+    history: 'Clinical scenario: A 58-year-old man has fever, cough, sore throat, generalized aches, and worsening respiratory symptoms over 3 days. Chest CT shows a viral-pneumonia pattern with subpleural involvement. The task is to use the distribution and lobular morphology to decide which pathogen category is most favored.',
     image: {
       type: 'local_source_asset',
       src: '/assets/source-cases/dxy-respiratory-influenza-ct-20250109.jpg',
       alt: 'Annotated chest CT image from a DXY Respiratory Time article about H1N1 influenza viral pneumonia'
     },
-    image_credit: 'Image cached locally from the linked Tencent News mirror of the public account article for private learning only; annotation preserved.',
+    image_credit: 'Image from the linked Tencent News mirror of the public account article; annotation preserved.',
     visual: 'source-chest-ct',
     question_type: 'single_choice',
     question: 'Based on the source article teaching point, which pathogen is most favored by this CT pattern and history?',
@@ -239,7 +239,7 @@ export const sourceCases = [
       'On CT, look for subpleural disease plus lobular filling/limitation, including wedge-shaped lesions whose apex points toward the hilum.',
       'Interlobular septal thickening in this context supports the source article diagnosis of H1N1 influenza viral pneumonia.'
     ],
-    explanation: 'The source article frames the answer as H1N1 influenza virus. It highlights subpleural lesions that can resemble COVID-19 pneumonia, while emphasizing lobular filling/limitation, wedge-shaped lesions, and visible interlobular septal thickening. This card is meant for pattern recall, not standalone clinical diagnosis.',
+    explanation: 'Image basics: Influenza viral pneumonia can show bilateral or subpleural ground-glass and consolidative opacities, sometimes with lobular filling, wedge-like lesions, and interlobular septal thickening. Why this answer fits: the acute viral syndrome plus subpleural wedge-like opacities and septal thickening support H1N1 influenza in the article context. Differential: COVID-19 pneumonia can also be subpleural but depends on epidemic context and testing; typical bacterial pneumonia is more often dense lobar consolidation; tuberculosis and fungal disease usually need different tempo, distribution, or host-risk clues.',
     differential: ['Influenza viral pneumonia', 'COVID-19 pneumonia', 'Other viral pneumonia', 'Atypical bacterial pneumonia'],
     common_trap: 'Calling every subpleural viral-looking pneumonia COVID-19 without checking the full pattern and epidemic context.',
     must_not_miss: 'Assess oxygenation, severity, coinfection risk, and need for antiviral treatment or admission according to clinical context.',

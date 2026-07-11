@@ -1,7 +1,6 @@
 import ModuleCard from './ModuleCard.jsx';
 import PenaltyReview from './PenaltyReview.jsx';
 import ProgressPanel from './ProgressPanel.jsx';
-import SourceReviewPanel from './SourceReviewPanel.jsx';
 import WeakSignsPanel from './WeakSignsPanel.jsx';
 
 const modules = [
@@ -29,7 +28,6 @@ export default function Dashboard({
   casesById,
   imageStatusCounts,
   lifecycleCounts,
-  sourceReviewCases,
   bossUnlocked,
   recommendation,
   moduleSummaries,
@@ -143,7 +141,6 @@ export default function Dashboard({
           {lifecycleCounts?.reviewedRealCase || 0}/{imageStatusCounts?.real || 0}.
         </p>
       </section>
-      <SourceReviewPanel cases={sourceReviewCases || []} />
       <WeakSignsPanel weakSigns={weakSigns} />
       <PenaltyReview dueItems={dueReviewItems} casesById={casesById} />
     </div>

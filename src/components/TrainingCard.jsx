@@ -10,7 +10,7 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
   const isCorrect = submitted && selected === caseItem.answer;
   const batchLabel =
     caseItem.content_type === 'real_source_draft'
-      ? 'Real-image source review batch'
+      ? 'Real-image practice'
       : imageStatus === 'placeholder'
         ? 'Synthetic demo batch'
         : getImageStatusLabel(imageStatus);
@@ -65,19 +65,7 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
         {showImageNotice && (
           <div className={`image-notice image-status-${imageStatus}`}>
             <strong>{getImageStatusLabel(imageStatus)}</strong>
-            <span>
-              {imageStatus === 'placeholder'
-                ? 'This case is for workflow demonstration only; image findings are not represented by the visual.'
-                : imageStatus === 'missing'
-                  ? 'This case has no displayable source image and is not eligible for formal training.'
-                  : 'The source image could not be loaded and is not eligible for formal training.'}
-            </span>
-          </div>
-        )}
-        {caseItem.content_type === 'real_source_draft' && (
-          <div className="source-banner">
-            <strong>Source draft</strong>
-            <span>AI-generated draft, not medically reviewed. Private learning use only.</span>
+            <span>Skip this card until the image is available.</span>
           </div>
         )}
         <p className="case-meta">
@@ -107,31 +95,36 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
 
         {!submitted ? (
           <button className="primary-action" onClick={commit} disabled={!selected} type="button">
-            Commit Answer
+            Submit
           </button>
         ) : (
           <section className={`reveal-panel ${isCorrect ? 'correct' : 'wrong'}`}>
             <p className="result-line">
-              {isCorrect ? 'Correct. You survived this case.' : 'Penalty Review updated.'}
+              {isCorrect ? 'Correct' : 'Review this one again'}
             </p>
-            <h3>Diagnosis: {caseItem.answer}</h3>
+            <h3>{caseItem.answer}</h3>
             <div className="chip-row">
               {caseItem.signs.map((sign) => (
                 <span key={sign}>{sign}</span>
               ))}
             </div>
-            <h4>Reasoning Steps</h4>
+            <h4>Basic Knowledge + Differential</h4>
+            <p>{caseItem.explanation}</p>
+            <h4>Differential</h4>
+            <div className="chip-row">
+              {caseItem.differential.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+            <h4>Reasoning</h4>
             <ol>
               {caseItem.reasoning_steps.map((step) => (
                 <li key={step}>{step}</li>
               ))}
             </ol>
-            <h4>Common Trap</h4>
-            <p>{caseItem.common_trap}</p>
-            <h4>Must Not Miss</h4>
-            <p>{caseItem.must_not_miss}</p>
-            <h4>Explanation</h4>
-            <p>{caseItem.explanation}</p>
+            <p className="compact-note">
+              Watch for: {caseItem.common_trap} {caseItem.must_not_miss}
+            </p>
             {caseItem.source?.url && (
               <p className="source-note">
                 Source: {caseItem.source.account || caseItem.source.title}{' '}
@@ -140,13 +133,12 @@ export default function TrainingCard({ caseItem, index, total, onCommit, onNext,
                 </a>
               </p>
             )}
-            {caseItem.image_credit && <p className="source-note">{caseItem.image_credit}</p>}
             <div className="reveal-actions">
               <button className="secondary-action report-action" onClick={reportIssue} type="button">
                 {reported ? 'Issue reported' : 'Report issue'}
               </button>
               <button className="primary-action" onClick={next} type="button">
-                Again, Doctor
+                Next case
               </button>
             </div>
           </section>
